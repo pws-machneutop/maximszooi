@@ -9,6 +9,7 @@ enemyAlive = {}
 enemyVertical = {}
 enemyHorizontal  = {} 
 EnableEnemyRender = {}
+<<<<<<< HEAD
 
 -- Variables to retain previous frame data
 fireballPrevious1 = 0
@@ -31,6 +32,18 @@ fitness = 666
 fitnessMax = 1234
 progress = 24
 marioX = 0
+=======
+
+-- Variables to retain previous frame data
+fireballPrevious1 = 0
+fireballPrevious2 = 0
+fireballSecondPrevious1 = 0
+fireballSecondPrevious2 = 0
+boomarangPrevious1 = 0
+boomarangPrevious2 = 0
+boomarangSecondPrevious1 = 0
+boomarangSecondPrevious2 = 0
+>>>>>>> 651e9725b35140633c6d4afc44876f36d9ff241d
 
 -- Controller data
 controller = {}
@@ -51,6 +64,7 @@ buttonNames = {
 }
 	
 while true do
+<<<<<<< HEAD
 
 
 
@@ -110,6 +124,18 @@ while true do
     gui.drawBox(3, 11, 16*4 + 4, 15*4 + 12, 0xff000000 ,0x40000000)
     gui.drawLine(15, 12, 15, 71, 0xff888888)
     gui.drawLine(56, 12, 56, 71, 0xff888888)
+=======
+    -- Temporary, development only
+    memory.writebyte(0x000ED, 05) -- Infinite Tanooki power-up
+    memory.writebyte(0x05F1, 1) -- Disable timer
+    
+   
+    
+    -- Draw GUI - empty
+    gui.drawBox(4, 4, 16*4 + 4, 15*4 + 4, 0xff888888 ,0x40000000)
+    gui.drawLine(16, 0, 16, 64, 0xff888888)
+    gui.drawLine(56, 0, 56, 64, 0xff888888)
+>>>>>>> 651e9725b35140633c6d4afc44876f36d9ff241d
     
     -- Refresh inputs
     for c = 1, 16*16, 1 do
@@ -129,7 +155,11 @@ while true do
 	end
     
 	-- Check all tiles around Mario for hitboxes and update inputs (hitboxes)
+<<<<<<< HEAD
 	for i = 1, 241, 1 do
+=======
+	for i = 1, 240, 1 do
+>>>>>>> 651e9725b35140633c6d4afc44876f36d9ff241d
 		tileX = marioX - 128 + (16*(i-1))%256   
 		tileY = marioY - 128 + 16*math.floor((i-1)/16)
 		
@@ -176,7 +206,11 @@ while true do
     for i = 1, 5, 1 do
     	if EnableEnemyRender[i] == 1 then
     		if enemyAlive[i] == 2 or enemyAlive[i] == 5 then			
+<<<<<<< HEAD
    					tiles[(enemyVertical[i])*16 + enemyHorizontal[i]] = -1
+=======
+   					tiles[(enemyVertical[i])*16 + enemyHorizontal[i]] = 2
+>>>>>>> 651e9725b35140633c6d4afc44876f36d9ff241d
    			end
     	end
     end
@@ -204,6 +238,7 @@ while true do
     boomarangDirection1 = boomarangSecondPrevious1 - memory.readbyte(0x05CD)
     boomarangSecondPrevious1 = boomarangPrevious1
     boomarangPrevious1 = memory.readbyte(0x05CD)
+<<<<<<< HEAD
     
     boomarangDirection2 = boomarangSecondPrevious2 - memory.readbyte(0x05CE)
     boomarangSecondPrevious2 = boomarangPrevious2
@@ -223,14 +258,41 @@ while true do
     tiles[boomarangVertical2*16 + boomarangHorizontal2] = -1
     end
     
+=======
+    
+    boomarangDirection2 = boomarangSecondPrevious2 - memory.readbyte(0x05CE)
+    boomarangSecondPrevious2 = boomarangPrevious2
+    boomarangPrevious2 = memory.readbyte(0x05CE)
+    
+    -- Update inputs (projectiles)
+    if fireballDirection1 ~= 0 then
+    	tiles[fireballVertical1*16 + fireballHorizontal1] = 2
+    end
+    if fireballDirection2 ~= 0 then
+    tiles[fireballVertical2*16 + fireballHorizontal2] = 2
+    end
+    if boomarangDirection1 ~= 0 then
+    	tiles[boomarangVertical1*16 + boomarangHorizontal1] = 2
+    end
+    if boomarangDirection2 ~= 0 then
+    tiles[boomarangVertical2*16 + boomarangHorizontal2] = 2
+    end
+    
+>>>>>>> 651e9725b35140633c6d4afc44876f36d9ff241d
    
     -- Draw inputs
     for layer = 1, 15, 1 do
         for i = 1, 16, 1 do
             sqX = 4 + (i-1) * 4
+<<<<<<< HEAD
             sqY = 12 + (layer-1) * 4 
             -- Enemies and projectiles
             if tiles[(layer-1)*16+i] == -1 then       
+=======
+            sqY = 4 + (layer-1) * 4 
+            -- Enemies and projectiles
+            if tiles[(layer-1)*16+i] == 2 then       
+>>>>>>> 651e9725b35140633c6d4afc44876f36d9ff241d
                 gui.drawBox(sqX, sqY, sqX + 3, sqY + 3, 0xFF000000, 0xFF000000)            
             else 
             -- Hitboxes
@@ -245,9 +307,14 @@ while true do
     end
     
     -- Draw position Mario
+<<<<<<< HEAD
     gui.drawBox(37, 45, 38, 51, 0xFF740858, 0xFF740858)
     gui.drawLine(34, 51, 41, 51, 0xFF740858)
     
+=======
+    gui.drawBox(37, 37, 38, 43, 0xFF740858, 0xFF740858)
+    gui.drawLine(34, 43, 41, 43, 0xFF740858)
+>>>>>>> 651e9725b35140633c6d4afc44876f36d9ff241d
     
     
 -- BLOCK 3: VISUALISATION NEURAL NETWORK AND OUTPUTS
@@ -330,4 +397,7 @@ while true do
     emu.frameadvance();
 end
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 651e9725b35140633c6d4afc44876f36d9ff241d
